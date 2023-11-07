@@ -3,22 +3,34 @@ data "aws_iam_policy_document" "kubernetes_cluster_autoscaler" {
   count = var.enabled ? 1 : 0
 
   statement {
-    actions = [
-      "autoscaling:DescribeAutoScalingGroups",
-      "autoscaling:DescribeAutoScalingInstances",
-      "autoscaling:DescribeLaunchConfigurations",
-      "autoscaling:DescribeTags",
-      "autoscaling:SetDesiredCapacity",
-      "autoscaling:TerminateInstanceInAutoScalingGroup",
-      "ec2:DescribeLaunchTemplateVersions",
-      "ec2:DescribeInstanceTypes"
-    ]
-    resources = [
-      "*",
-    ]
     effect = "Allow"
+
+    actions = [
+        "autoscaling:DescribeAutoScalingGroups",
+        "autoscaling:DescribeAutoScalingInstances",
+        "autoscaling:DescribeLaunchConfigurations",
+        "autoscaling:DescribeScalingActivities",
+        "autoscaling:DescribeTags",
+        "ec2:DescribeInstanceTypes",
+        "ec2:DescribeLaunchTemplateVersions"
+    ]
+    resources = ["*"]
   }
 
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "autoscaling:SetDesiredCapacity",
+      "autoscaling:TerminateInstanceInAutoScalingGroup",
+      "autoscaling:UpdateAutoScalingGroup",
+      "ec2:DescribeImages",
+      "ec2:GetInstanceTypesFromInstanceRequirements",
+      "eks:DescribeNodegroup"
+    ]
+
+    resources = ["*"]
+  }
 }
 
 resource "aws_iam_policy" "kubernetes_cluster_autoscaler" {

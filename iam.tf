@@ -10,6 +10,7 @@ data "aws_iam_policy_document" "kubernetes_cluster_autoscaler" {
         "autoscaling:DescribeAutoScalingInstances",
         "autoscaling:DescribeLaunchConfigurations",
         "autoscaling:DescribeScalingActivities",
+        "autoscaling:DescribeTags",
         "ec2:DescribeImages",
         "ec2:DescribeInstanceTypes",
         "ec2:DescribeLaunchTemplateVersions",

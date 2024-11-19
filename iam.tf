@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "kubernetes_cluster_autoscaler" {
         "ec2:DescribeInstanceTypes",
         "ec2:DescribeLaunchTemplateVersions",
         "ec2:GetInstanceTypesFromInstanceRequirements",
-        "eks:DescribeNodegroup"
+        "eks:DescribeNodegroup",
         "eks:Describe*",
         "eks:List*"
     ]
